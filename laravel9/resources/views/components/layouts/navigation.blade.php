@@ -38,10 +38,23 @@
         </div>
         <div class="ml-auto">
           <div class="flex space-x-4">
+            @guest
             <!-- Active: 'text-sky-600 dark:text-white', Inactive 'text-slate-400' -->
-            <a href="{{ route('register') }}" class="px-3 py-2 text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('register') ? 'text-sky-600' : 'text-white'}}">
+            <a href="{{ route('register') }}" class="lg:px-3 py-2 text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('register') ? 'text-sky-600' : 'text-white'}}">
+              Register
+            </a>
+            <a href="{{ route('login') }}" class="lg:px-3 py-2 text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white {{ request()->routeIs('login') ? 'text-sky-600' : 'text-white'}}">
               Login
             </a>
+            @endguest
+            @auth
+              <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <a href="#" onclick="this.closest('form').submit()" class="lg:px-3 py-2 text-sm font-medium rounded-md hover:text-sky-600 dark:hover:text-white text-slate-400">
+                  Logout
+                </a>
+              </form>
+            @endauth
           </div>
         </div>
       </div>
